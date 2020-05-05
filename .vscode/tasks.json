@@ -1,0 +1,44 @@
+{
+    "tasks": [
+        {
+            "label": "Build (Windows)",
+            "type": "shell",
+            "command": "g++",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\System32\\wsl.exe"
+                }
+            },
+            "args": [
+                "-g",
+                "-std=c++17",
+                "-o",
+                "`wslpath",
+                "'${workspaceFolder}\\a.out'`",
+                "`wslpath",
+                "'${file}'`"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "Build (Mac)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++17",
+                "-o",
+                "${workspaceFolder}/a.out",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
