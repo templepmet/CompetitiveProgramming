@@ -11,7 +11,9 @@
             "program": "${command:extension.vscode-wsl-workspaceFolder}/a.out",
             "args": [
                 "<",
-                "${command:extension.vscode-wsl-workspaceFolder}/in.txt"
+                "${command:extension.vscode-wsl-workspaceFolder}/in.txt",
+                ">",
+                "${command:extension.vscode-wsl-workspaceFolder}/out.txt"
             ],
             "cwd": "${command:extension.vscode-wsl-workspaceFolder}",
             "setupCommands": [
