@@ -5,17 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch (Windows)",
+            "name": "g++-7 - アクティブ ファイルのビルドとデバッグ",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${command:extension.vscode-wsl-workspaceFolder}/a.out",
-            "args": [
-                "<",
-                "${command:extension.vscode-wsl-workspaceFolder}/in.txt",
-                ">",
-                "${command:extension.vscode-wsl-workspaceFolder}/out.txt"
-            ],
-            "cwd": "${command:extension.vscode-wsl-workspaceFolder}",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
             "setupCommands": [
                 {
                     "description": "gdb の再フォーマットを有効にする",
@@ -23,26 +22,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "sourceFileMap": {
-                "${command:extension.vscode-wsl-workspaceFolder}": "${workspaceFolder}"
-            },
-            "pipeTransport": {
-                "debuggerPath": "/usr/bin/gdb",
-                "pipeProgram": "${env:windir}\\system32\\bash.exe",
-                "pipeArgs": ["-c"],
-                "pipeCwd": ""
-            },
-            "stopAtEntry": false,
-            "environment": [],
-            "externalConsole": false,
-            "preLaunchTask": "Build (Windows)"
-        },
-        {
-            "name": "Launch (Mac)",
-            "type": "lldb",
-            "request": "launch",
-            "program": "${workspaceFolder}/a.out",
-            "preLaunchTask": "Build (Mac)"
+            "preLaunchTask": "C/C++: g++-7 build active file",
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }
