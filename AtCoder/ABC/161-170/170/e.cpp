@@ -1,3 +1,20 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define INF (1 << 30)
+#define EPS 1e-10
+#define MOD 1000000007
+
+#define rep(i, n) FOR(i, 0, n)
+#define FOR(i, x, n) for (int i = (x); i < (n); ++i)
+#define all(v) (v).begin(), (v).end()
+
+using ll = long long;
+
+template<class T> void chmax(T& a, T b){ if (a < b) { a = b; } }
+template<class T> void chmin(T& a, T b){ if (a > b) { a = b; } }
+
 template <typename X>
 struct SegmentTree {
     using FX = function<X(X, X)>;
@@ -50,10 +67,38 @@ struct SegmentTree {
     }
 };
 
-/*
+#define M 200001
 
-// rmq (min)
-auto fx = [](int x1, int x2) -> int { return min(x1, x2); };
-SegmentTree<int> rmq(n, fx, INF);
+int a[M];
+int b[M];
+multiset<int, greater<int>> s[M];
 
-*/
+int main() {
+    auto fx = [](int x1, int x2) -> int { return min(x1, x2); };
+    SegmentTree<int> rmq(M, fx, INF);
+
+    int n, q, c, d;
+    cin >> n >> q;
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i] >> b[i];
+        s[b[i]].insert(a[i]);
+        rmq.update(b[i], *s[b[i]].begin());
+    }
+
+    while (q--) {
+        cin >> c >> d;
+        s[b[c]].erase(s[b[c]].find(a[c]));
+        if (s[b[c]].empty()) {
+            rmq.update(b[c], INF);
+        }
+        else {
+            rmq.update(b[c], *s[b[c]].begin());
+        }
+        b[c] = d;
+        s[b[c]].insert(a[c]);
+        rmq.update(b[c], *s[b[c]].begin());
+        cout << rmq.query(1, M) << endl;
+    }
+
+    return 0;
+}
