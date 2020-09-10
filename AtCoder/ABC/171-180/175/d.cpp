@@ -43,6 +43,7 @@ int main() {
         ll max_mod = *max_element(&w[1], &w[k % cyc + 1]);
         ll t = max_mod;
         if (k >= cyc) {
+            chmax(t, max_all);
             chmax(t, (k / cyc) * w[cyc] + (k % cyc == 0 ? 0LL : max(0LL, max_mod)));
             chmax(t, ((k / cyc) - 1) * w[cyc] + max_all);
         }
