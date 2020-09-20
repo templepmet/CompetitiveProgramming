@@ -12,15 +12,11 @@ using namespace std;
 
 using ll = long long;
 
-template<class T> void chmax(T& a, T b){ a>b?:a=b; }
-template<class T> void chmin(T& a, T b){ a<b?:a=b; }
+template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } return false; }
+template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
 
 int main() {
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; ++i) {
-        cout << i + 1 << endl;
-    }
+    
 
     return 0;
 }
