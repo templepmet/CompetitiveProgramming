@@ -15,18 +15,18 @@ using ll = long long;
 template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } return false; }
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
 
-int b[100000];
+int a[30000];
 
 int main() {
-    int n, a;
+    int n, c;
     cin >> n;
-    fill(b, b + n, INF);
+    fill(a, a + n, INF);
     rep(i, n) {
-        cin >> a;
-        b[lower_bound(b, b + n, a) - b] = a;
+        cin >> c;
+        a[lower_bound(a, a + n, c) - a] = c;
     }
-    int ans = lower_bound(b, b + n, INF) - b;
-    cout << ans << endl;
+    int lis = lower_bound(a, a + n, INF) - a;
+    cout << n - lis << endl;
 
     return 0;
 }

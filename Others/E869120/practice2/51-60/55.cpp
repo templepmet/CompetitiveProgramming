@@ -15,18 +15,22 @@ using ll = long long;
 template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } return false; }
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
 
-int b[100000];
-
 int main() {
     int n, a;
+    multiset<int> ms;
     cin >> n;
-    fill(b, b + n, INF);
-    rep(i, n) {
+    while (n--) {
         cin >> a;
-        b[lower_bound(b, b + n, a) - b] = a;
+        auto it = ms.lower_bound(a);
+        if (it == ms.begin()) {
+            ms.insert(a);
+        }
+        else {
+            ms.erase(--it);
+            ms.insert(a);
+        }
     }
-    int ans = lower_bound(b, b + n, INF) - b;
-    cout << ans << endl;
+    cout << ms.size() << endl;
 
     return 0;
 }

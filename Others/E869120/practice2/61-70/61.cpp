@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define INF (1 << 30)
+#define INF (1 << 29)
 #define EPS 1e-10
 #define MOD 1000000007
 
@@ -15,17 +15,30 @@ using ll = long long;
 template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } return false; }
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
 
-int b[100000];
+int d[300][300];
 
 int main() {
-    int n, a;
-    cin >> n;
-    fill(b, b + n, INF);
-    rep(i, n) {
-        cin >> a;
-        b[lower_bound(b, b + n, a) - b] = a;
+    int n, m, a, b, t;
+    cin >> n >> m;
+    fill(d[0], d[n], INF);
+    rep(i, n) d[i][i] = 0;
+    rep(i, m) {
+        cin >> a >> b >> t;
+        a--; b--;
+        d[a][b] = t;
+        d[b][a] = t;
     }
-    int ans = lower_bound(b, b + n, INF) - b;
+    rep(k, n) {
+        rep(i, n) {
+            rep(j, n) {
+                chmin(d[i][j], d[i][k] + d[k][j]);
+            }
+        }
+    }
+    int ans = INF;
+    rep(i, n) {
+        chmin(ans, *max_element(d[i], d[i] + n));
+    }
     cout << ans << endl;
 
     return 0;
