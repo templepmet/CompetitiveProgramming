@@ -14,15 +14,34 @@ using ll = long long;
 
 template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } return false; }
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
-ll powMod(ll a, ll b, ll p) {
-    cout << a << " " << b << endl;
-    if (b == 0) return 1;
-    if (b % 2) return (a * powMod(a, b - 1, p)) % p;
-    return powMod(a * a % p, b / 2, p);
+
+int x, y;
+void f(int *a) {
+    *a = *a + 3;
+}
+
+void g(int *b) {
+    f(b);
+    x = x + 1;
+}
+
+void h(int y) {
+    if (y > 1) {
+        h(y - 1);
+        x = (x + 3) * y;
+    }
 }
 
 int main() {
-    cout << powMod(2, 322, 323) << endl;
+    x = 1;
+    y = 2;
+    h(y + 1);
+    cout << x << " " << y << endl;
+    x = 3;
+    y = 4;
+    g(&y);
+    
+    cout << x << " " << y << endl;
 
     return 0;
 }
