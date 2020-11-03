@@ -20,6 +20,27 @@
 			],
 			"group": "build",
 			"detail": "compiler: /usr/bin/g++"
+		},
+		{
+			"type": "shell",
+			"label": "C/C++: g++-9 mac build active file",
+			"command": "/usr/local/bin/g++-9",
+			"args": [
+				"-g",
+				"${file}",
+				"-o",
+				"${workspaceFolder}/a.out"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }
