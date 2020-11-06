@@ -6,6 +6,7 @@
         "limits": "cpp",
         "valarray": "cpp",
         "ostream": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "cmath": "cpp"
     }
 }
