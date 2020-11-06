@@ -10,7 +10,7 @@
 				"${file}",
 				"-std=c++17",
 				"-o",
-				"${workspaceFolder}/a.out"
+				"`dirname ${file}`/a.out"
 			],
 			"options": {
 				"cwd": "/usr/bin"
