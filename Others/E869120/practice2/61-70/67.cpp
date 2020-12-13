@@ -45,42 +45,43 @@ public:
     }
 };
 
-using T = tuple<double, int, int>;
+using P = pair<int, int>;
+using T = tuple<int, int, int>;
 
-int n;
-double x[100], y[100], z[100], r[100];
-double d[100][100];
-
-void solve() {
-    fill(d[0], d[n], 0);
-    UnionFind uf(n);
-    priority_queue<T, vector<T>, greater<T>> que;
+int main() {
+    int n, x, y;
+    cin >> n;
+    vector<P> vx, vy;
     for (int i = 0; i < n; ++i) {
-        for (int j = i + 1; j < n; ++j) {
-            d[i][j] = max(0.0, sqrt(pow(x[i] - x[j], 2) + pow(y[i] - y[j], 2) + pow(z[i] - z[j], 2)) - r[i] - r[j]);
-            que.emplace(d[i][j], i, j);
-        }
+        cin >> x >> y;
+        vx.emplace_back(x, i);
+        vy.emplace_back(y, i);
     }
-    double ans = 0;
-    while (!que.empty()) {
-        auto [di, u, v] = que.top();
-        que.pop();
+    sort(vx.begin(), vx.end());
+    sort(vy.begin(), vy.end());
+    vector<T> e;
+    for (int i = 0; i < n - 1; ++i) {
+        e.emplace_back(vx[i + 1].first - vx[i].first, vx[i].second, vx[i + 1].second);
+        e.emplace_back(vy[i + 1].first - vy[i].first, vy[i].second, vy[i + 1].second);
+    }
+    // いらない
+    for (int i = 1; i < n; ++i) {
+        e.emplace_back(vx[i].first - vx[i - 1].first, vx[i - 1].second, vx[i].second);
+        e.emplace_back(vy[i].first - vy[i - 1].first, vy[i - 1].second, vy[i].second);
+    }
+    sort(e.begin(), e.end());
+
+    UnionFind uf(n);
+    ll ans = 0;
+    for (auto t : e) {
+        auto [co, u, v] = t;
         if (uf.root(u) == uf.root(v))
             continue;
         uf.unite(u, v);
-        ans += di;
+        ans += co;
     }
-    cout << fixed << setprecision(3);
-    cout << ans << endl;
-}
 
-int main() {
-    while (cin >> n && n > 0) {
-        for (int i = 0; i < n; ++i) {
-            cin >> x[i] >> y[i] >> z[i] >> r[i];
-        }
-        solve();
-    }
+    cout << ans << endl;
 
     return 0;
 }
