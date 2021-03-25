@@ -12,18 +12,17 @@ template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } retu
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
 
 int main() {
-    string s;
-    cin >> s;
-    map<char, int> mp;
-    for (auto c : s) {
-        mp[c]++;
+    int n, s, d, x, y;
+    bool f = false;
+    cin >> n >> s >> d;
+    for (int i = 0; i < n; ++i) {
+        cin >> x >> y;
+        if (x < s && y > d) {
+            f = true;
+        }
     }
-    if (mp.begin()->second == 3) {
-        cout << "Won" << endl;
-    }
-    else {
-        cout << "Lost" << endl;
-    }
+
+    cout << (f ? "Yes" : "No") << endl;
 
     return 0;
 }
