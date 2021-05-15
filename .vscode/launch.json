@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++-7 - アクティブ ファイルのビルドとデバッグ",
+            "name": "g++-9 - アクティブ ファイルのビルドとデバッグ",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/a.out",

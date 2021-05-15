@@ -2,15 +2,11 @@
 
 using namespace std;
 
-#define INF (1 << 30)
-#define EPS 1e-10
-#define MOD 1000000007
-
-#define rep(i, n) FOR(i, 0, n)
-#define FOR(i, x, n) for (int i = (x); i < (n); ++i)
-#define all(v) (v).begin(), (v).end()
-
 using ll = long long;
+using P = tuple<int, int>;
+
+const int MOD = 1e9 + 7;
+const int INF = 1e9 + 1;
 
 template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } return false; }
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
