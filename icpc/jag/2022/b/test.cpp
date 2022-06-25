@@ -12,18 +12,16 @@ template<class T> bool chmax(T& a, T b){ if (a < b) { a = b; return true; } retu
 template<class T> bool chmin(T& a, T b){ if (a > b) { a = b; return true; } return false; }
 
 int main() {
-    map<int, int> mp;
-    mp[1] = 8;
-    mp[2] = 4;
-    mp[3] = 2;
-    mp[4] = 2;
+	set<int, greater<int>> q;
+	// set<int> q;
+	q.insert(1);
+	q.insert(3);
+	q.insert(4);
+	q.insert(2);
+	q.insert(5);
+	for (auto it = q.begin(); it != q.end(); ++it) {
+		cout << *it << endl;
+	}
 
-    for (auto [key, value] : mp) {
-        cout << key << " " << value << endl;
-    }
-
-    auto it = max_element(mp.begin(), mp.end());
-    cout << it->first << " " << it->second << endl;
-
-    return 0;
+	return 0;
 }
